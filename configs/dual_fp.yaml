@@ -1,0 +1,22 @@
+name: dual_fp
+model:
+  dino_name: vit_large_patch16_dinov3.lvd1689m
+  dino_indices: [5, 11, 17, 23]
+  dofa_indices: [2, 5, 8, 11]
+  fusion_dim: 256
+  use_dino: true
+  use_dofa: true
+  adapter: true
+train:
+  datasets: [floodplanet]
+  crop: 512
+  batch_size: 8
+  epochs: 60
+  lr: 3.0e-4
+  weight_decay: 0.01
+  num_workers: 16
+loss:
+  w_bce: 1.0
+  w_dice: 1.0
+  w_boundary: 1.0
+  band_width: 3

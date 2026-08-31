@@ -1,0 +1,66 @@
+name: s11/dual_s11
+model:
+  spectral: clay
+  # DINOv3: B4(red)=idx3, B3(green)=idx2, B2(blue)=idx1 from 13-band S2 input
+  dino_rgb_indices: [3, 2, 1]
+  dino_indices: [5, 11, 17, 23]
+  dino_name: vit_large_patch16_dinov3.lvd1689m
+  # Clay: all 13 S2 bands, known wavelengths (µm), per-image norm
+  clay_indices: [5, 11, 17, 23]
+  clay_gsd: 10.0
+  clay_downsample: 1
+  clay_wavelengths:
+    - 0.443   # B1  Coastal aerosol
+    - 0.490   # B2  Blue
+    - 0.560   # B3  Green
+    - 0.665   # B4  Red
+    - 0.705   # B5  Red Edge 1
+    - 0.740   # B6  Red Edge 2
+    - 0.783   # B7  Red Edge 3
+    - 0.842   # B8  NIR broad
+    - 0.865   # B8A NIR narrow
+    - 0.945   # B9  Water vapour
+    - 1.375   # B10 Cirrus
+    - 1.610   # B11 SWIR 1
+    - 2.190   # B12 SWIR 2
+  # DINOv3: per_image z-score on RGB (S2 L1C DN is 0-10000; can't use 1/0.3 optical scaling)
+  norm_mode: per_image
+  # Clay: fixed dataset stats (Pangaea S11 measurements, DN scale) so Clay sees the
+  # same distribution it was pretrained on — per_image z-score was killing performance
+  clay_norm_mode: dataset
+  clay_band_mean: [1626.916, 1396.035, 1364.061, 1218.228, 1466.073, 2386.903,
+                   2845.613, 2622.958, 3077.482, 486.874, 63.779, 2030.648, 1179.166]
+  clay_band_std:  [700.171, 739.095, 735.248, 864.937, 776.880, 921.368,
+                   1084.373, 1022.634, 1196.443, 336.611, 143.999, 980.871, 764.608]
+  # arch5 recipe
+  earth_adapter: true
+  ea_bottleneck: 32
+  ea_rho: 0.25
+  adapter: [adac, ppad]
+  lora_rank: 0
+  decoder: linknet
+  use_stem: false
+  use_dino: true
+  use_dofa: true
+  fusion_dim: 256
+  grad_ckpt: true
+  swir_aux_head: false
+train:
+  ext_dataset: sen1floods11
+  crop: 512
+  batch_size: 8
+  epochs: 100
+  lr: 5.0e-4
+  weight_decay: 0.01
+  num_workers: 16
+  spectral_aug:
+    p: 0.8
+    gain: 0.2
+    offset: 0.02
+    gamma: 0.25
+loss:
+  w_bce: 1.0
+  w_dice: 1.0
+  w_boundary: 1.0
+  band_width: 3
+  # ignore_index injected automatically from Sen1Floods11Dataset.IGNORE_INDEX = -1

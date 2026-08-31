@@ -1,0 +1,52 @@
+name: kurosiwo/dual_kurosiwo
+model:
+  spectral: clay
+  # DINOv3: VV=idx0 as R, VH=idx1 as G, zero-pad as B
+  # (zero-pad handled automatically when rgb_indices has < 3 entries)
+  dino_rgb_indices: [0, 1]
+  dino_indices: [5, 11, 17, 23]
+  dino_name: vit_large_patch16_dinov3.lvd1689m
+  # Clay: 2-band SAR, pseudo-wavelengths from Clay pretraining (µm proxy)
+  clay_indices: [5, 11, 17, 23]
+  clay_gsd: 10.0
+  clay_downsample: 1
+  clay_wavelengths:
+    - 3.5   # VV  (C-band pseudo-wavelength, Clay convention)
+    - 4.0   # VH
+  # per_image norm: z-score each SAR channel independently
+  norm_mode: per_image
+  # arch5 recipe
+  earth_adapter: true
+  ea_bottleneck: 32
+  ea_rho: 0.25
+  adapter: [adac, ppad]
+  lora_rank: 0
+  decoder: linknet
+  use_stem: false
+  use_dino: true
+  use_dofa: true
+  fusion_dim: 256
+  grad_ckpt: true
+  swir_aux_head: false
+train:
+  ext_dataset: kurosiwo
+  # KuroSiwo has 48k train tiles; cap to keep training time reasonable.
+  # At 60 ep x 5000 tiles / bs8 ≈ 37k steps ≈ 3h on one GPU.
+  # Set null to use all 48k tiles (~24h/run).
+  max_tiles: 5000
+  batch_size: 8
+  epochs: 100
+  lr: 5.0e-4
+  weight_decay: 0.01
+  num_workers: 16
+  spectral_aug:
+    p: 0.8
+    gain: 0.2
+    offset: 0.02
+    gamma: 0.25
+loss:
+  w_bce: 1.0
+  w_dice: 1.0
+  w_boundary: 1.0
+  band_width: 3
+  # ignore_index injected automatically from KuroSiwoDataset.IGNORE_INDEX = 255

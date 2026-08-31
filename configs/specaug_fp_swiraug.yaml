@@ -1,0 +1,49 @@
+loss:
+  band_width: 3
+  w_bce: 1.0
+  w_boundary: 1.0
+  w_dice: 1.0
+model:
+  adapter:
+  - adac
+  - ppad
+  clay_indices:
+  - 5
+  - 11
+  - 17
+  - 23
+  decoder: linknet
+  dino_indices:
+  - 5
+  - 11
+  - 17
+  - 23
+  dino_name: vit_large_patch16_dinov3.lvd1689m
+  ea_bottleneck: 32
+  ea_rho: 0.25
+  earth_adapter: true
+  fusion_dim: 256
+  grad_ckpt: true
+  lora_rank: 0
+  spectral: clay
+  use_dino: true
+  use_dofa: true
+  use_stem: false
+  swir_aux_head: true
+name: specaug/fp_swiraug_lr5.0e-4
+train:
+  batch_size: 8
+  crop: 512
+  datasets:
+  - floodplanet
+  epochs: 60
+  lr: 0.0005
+  num_workers: 16
+  weight_decay: 0.01
+  spectral_aug:
+    p: 0.8
+    gain: 0.2
+    offset: 0.02
+    gamma: 0.25
+  swir_aux: true
+  w_swir: 0.5

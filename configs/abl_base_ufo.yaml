@@ -1,0 +1,45 @@
+name: abl_base_ufo
+model:
+  dino_name: vit_large_patch16_dinov3.lvd1689m
+  dino_indices:
+  - 5
+  - 11
+  - 17
+  - 23
+  spectral: clay
+  clay_indices:
+  - 5
+  - 11
+  - 17
+  - 23
+  fusion_dim: 256
+  use_dino: true
+  use_dofa: true
+  adapter: false
+  lora_rank: 0
+  earth_adapter: false
+  ea_bottleneck: 32
+  ea_rho: 0.25
+  grad_ckpt: true
+  use_stem: false
+  decoder: linknet
+  fusion_opts:
+    aux_heads: false
+    disagreement: false
+    cross_attn: false
+    gated_fusion: false
+    aux_loss_weight: 0.3
+train:
+  datasets:
+  - ufo
+  crop: 512
+  batch_size: 8
+  epochs: 80
+  lr: 0.0005
+  weight_decay: 0.01
+  num_workers: 16
+loss:
+  w_bce: 1.0
+  w_dice: 1.0
+  w_boundary: 1.0
+  band_width: 3

@@ -1,0 +1,18 @@
+name: unet_fp
+model:
+  arch: unet
+  in_ch: 4
+  base: 64
+train:
+  datasets: [floodplanet]
+  crop: 512
+  batch_size: 8
+  epochs: 60
+  lr: 1.0e-3
+  weight_decay: 0.01
+  num_workers: 16
+loss:
+  w_bce: 1.0
+  w_dice: 1.0
+  w_boundary: 1.0
+  band_width: 3
