@@ -13,7 +13,7 @@ Jensen–Shannon disagreement doubles as a label-free reliability signal, before
 
 Only ~65 M parameters are trained against ~614 M frozen.
 
-![architecture](docs/architecture.png)
+
 
 ## Results (leave-one-region-out, region-mean water IoU)
 
