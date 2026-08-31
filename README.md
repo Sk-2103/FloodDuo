@@ -131,7 +131,7 @@ Released under the MIT License (see `LICENSE`).
 @article{floodduo,
   title   = {FloodDuo: A Dual Foundation-Encoder Architecture for Generalizable
              High-Resolution Flood Mapping},
-  journal = {ISPRS Journal of Photogrammetry and Remote Sensing (under review)},
+  journal = {(under review)},
   year    = {2026}
 }
 ```
