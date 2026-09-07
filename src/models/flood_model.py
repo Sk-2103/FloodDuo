@@ -54,7 +54,7 @@ class FloodDualSeg(nn.Module):
         dofa_upsample: int = 1,  # 2 = fine-grid DOFA (input 2x -> 1/8 stride)
         dofa_size: str = "base",  # "base" (ViT-B) or "large" (ViT-L)
         croma_size: int = 256,   # CROMA fixed input grid (patch-8 -> size/8 tokens)
-        fusion_opts: dict = None,  # disagreement-aware fusion ladder (see CLAUDE.md)
+        fusion_opts: dict = None,  # disagreement-aware fusion ladder 
     ):
         super().__init__()
         assert use_dino or use_dofa
