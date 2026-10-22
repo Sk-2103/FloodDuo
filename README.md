@@ -83,10 +83,6 @@ cross-region generalization gap that a conventional random split hides
 
 FloodDuo significantly outperforms U-Net (+8.0 / +3.7 pp) and the strongest
 single-encoder foundation model (+2.8 / +3.0 pp, paired Wilcoxon on both).
-Full tables — matched single-encoder controls, the disagreement-gated fusion
-ablation, boundary-resolved error analysis, and the D-reliability
-calibration — are in [results.md](results.md), and all 16 manuscript
-figures are in [figures/](figures/).
 
 ## Installation
 
@@ -169,42 +165,6 @@ python -m src.eval --run runs/arch6_fp --dataset floodplanet
 python scripts/show_loro.py --budget 80       # prints every LORO table in results.md
 ```
 
-## Reproducing figures
-
-Each figure script reads from `runs/` and writes to `outputs/manuscript_figs/`
-(`FLOODDUO_VIZ` to override).
-
-**Quick check** — once you have a few trained runs (at minimum FloodDuo,
-U-Net, DOFA and TerraMind), regenerate 3 representative figures (the
-headline quantitative comparison, the accuracy/compute summary, and a real
-inference-driven qualitative gallery) to confirm everything works end to end:
-
-```bash
-bash scripts/make_key_figures.sh
-```
-
-**Everything else** — the remaining 13 figures, each as its own call. A few
-need a small analysis pass first to produce the JSON/NPZ they plot from:
-
-```bash
-python scripts/boundary_analysis.py            # -> boundary_stats.json
-python scripts/disagreement_full_analysis.py   # -> disagreement_stats.json, disagreement_cells.npz
-python scripts/failure_disagreement.py         # -> failure_disagreement.json, failure_Dmaps.npz
-python scripts/representation_stats.py         # -> representation_stats.json
-python scripts/representation_rerun.py         # -> representation_rerun.json
-
-python scripts/fig_boundary.py                 # Figure 9
-python scripts/fig_disagreement.py             # Figure 13
-python scripts/fig_failure.py                  # Figure 16
-python scripts/fig_representation.py           # Figure 11
-python scripts/fig_pr_scatter.py               # Figure 5
-python scripts/fig_geo_map.py                  # Figure 6
-python scripts/fig_complementarity_render.py   # Figure 12
-python scripts/fig_gate.py                     # Figure 14
-python scripts/fig_make.py --dataset ufo --regions HTX MID --mode detail  # Figures 8, 10
-```
-
-See [figures/README.md](figures/README.md) for the full script-to-figure map.
 
 ## Repository layout
 
