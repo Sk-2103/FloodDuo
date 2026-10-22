@@ -181,7 +181,6 @@ configs/         one YAML per reported model (champion, ablations, matched
 scripts/         LORO orchestration, results tables, figure generation
 notebook/        inference_demo.ipynb — run the release model on your own imagery
 figures/         architecture figure used above; the rest regenerate from scripts
-model.md         architecture detail
 results.md       every reported table
 ```
 
