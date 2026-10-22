@@ -15,10 +15,7 @@ complementary information:
 - **DINOv3-L** (RGB) — sharp spatial / boundary detail.
 - **Clay v1.5** (all four bands) — wavelength-conditioned spectral discrimination.
 
-Convolutional networks preserve fine boundary detail but generalize poorly
-to unseen regions; geospatial foundation models supply global context but, at
-standard patch sizes, lose the detail that distinguishes a flooded street
-from a dry one. FloodDuo keeps both: the frozen encoders are adapted with
+FloodDuo is a flood segmentation model which excel at local spatial nuances while keeping global context. It use dual encoder architechture, adapted with
 lightweight trainable modules (an in-block frequency-domain Earth-Adapter,
 plus post-hoc atrous-convolution and pyramid-pooling adapters), and their
 branch predictions are merged by a **disagreement-gated fusion** whose
