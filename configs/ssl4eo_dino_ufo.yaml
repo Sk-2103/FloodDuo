@@ -1,0 +1,30 @@
+name: ssl4eo_dino_ufo
+# Comparative baseline: SSL4EO-S12 DINO ViT-S/16 frozen + UPerNet, no adapters.
+# 13-band S2 model (ViT-Small, NOT capacity-matched to the ViT-L FMs); our 4 PS
+# bands mapped into S2 B2/B3/B4/B8. UFO, norm=per_image.
+model:
+  spectral: ssl4eo_dino
+  dofa_indices: [3, 5, 7, 11]
+  fusion_dim: 256
+  use_dino: false
+  use_dofa: true
+  adapter: []
+  lora_rank: 0
+  earth_adapter: false
+  grad_ckpt: false
+  use_stem: false
+  decoder: upernet
+  norm_mode: per_image
+train:
+  datasets: [ufo]
+  crop: 512
+  batch_size: 8
+  epochs: 80
+  lr: 5.0e-4
+  weight_decay: 0.01
+  num_workers: 16
+loss:
+  w_bce: 1.0
+  w_dice: 1.0
+  w_boundary: 1.0
+  band_width: 3
