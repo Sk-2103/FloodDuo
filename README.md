@@ -68,7 +68,7 @@ no retraining needed.
 
 ### Fine-tuning on your own region
 
-Have a handful of labeled tiles for a region, sensor, or flood type the
+Have a handful of labeled tiles for a region, or flood type the
 release model hasn't seen? `notebook/finetune_demo.ipynb` fine-tunes just
 FloodDuo's adapters/fusion/decoder (~65M params; both frozen backbones stay
 untouched) on a `finetune/` folder of a dozen-or-so labeled tiles, then
@@ -107,9 +107,7 @@ cross-region generalization gap that a conventional random split hides
 FloodDuo significantly outperforms U-Net (+8.0 / +3.7 pp) and the strongest
 single-encoder foundation model (+2.8 / +3.0 pp, paired Wilcoxon on both).
 Full tables — matched single-encoder controls, the disagreement-gated fusion
-ablation, boundary-resolved error analysis, and the D-reliability
-calibration — are in [results.md](results.md), and all 16 manuscript
-figures are in [figures/](figures/).
+ablation, boundary-resolved error analysis, and the D-reliability.
 
 ## Installation
 
