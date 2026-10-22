@@ -243,7 +243,6 @@ scripts/         LORO orchestration, results tables, figure generation
 notebook/        inference_demo.ipynb — run the release model on your own imagery
                  finetune_demo.ipynb — adapt it to a new region from a few labeled tiles
 figures/         architecture figure used above; the rest regenerate from scripts
-model.md         architecture detail
 results.md       every reported table
 ```
 
