@@ -9,7 +9,7 @@ Saurabh Kaushik, Beth Tellman, Qihao Weng — *ISPRS Journal of Photogrammetry a
 ---
 
 FloodDuo maps open water in high-resolution (3 m, 4-band B/G/R/NIR PlanetScope)
-imagery by pairing two **frozen** vision foundation-model encoders that carry
+post flood imagery by pairing two **frozen** vision foundation-model encoders that carry
 complementary information:
 
 - **DINOv3-L** (RGB) — sharp spatial / boundary detail.
