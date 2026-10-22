@@ -1,0 +1,29 @@
+name: prithvi_ufo
+# Comparative baseline: Prithvi-EO v2 300M frozen + UPerNet, no adapters.
+# UFO, norm=per_image.
+model:
+  spectral: prithvi
+  dofa_indices: [5, 11, 17, 23]
+  fusion_dim: 256
+  use_dino: false
+  use_dofa: true
+  adapter: []
+  lora_rank: 0
+  earth_adapter: false
+  grad_ckpt: false
+  use_stem: false
+  decoder: upernet
+  norm_mode: per_image
+train:
+  datasets: [ufo]
+  crop: 512
+  batch_size: 8
+  epochs: 80
+  lr: 5.0e-4
+  weight_decay: 0.01
+  num_workers: 16
+loss:
+  w_bce: 1.0
+  w_dice: 1.0
+  w_boundary: 1.0
+  band_width: 3
