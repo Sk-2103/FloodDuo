@@ -1,8 +1,7 @@
 
 
 import sys, os
-# repo root, for `import src` -- works whether this cell runs inside Jupyter
-# (cwd = notebook/) or as a plain script via `python notebook/*.py` (any cwd)
+
 _repo_root = (os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
               if "__file__" in globals() else os.path.abspath(".."))
 sys.path.insert(0, _repo_root)
