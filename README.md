@@ -4,7 +4,7 @@
 
 Saurabh Kaushik, Beth Tellman, Qihao Weng — *ISPRS Journal of Photogrammetry and Remote Sensing*, 2026
 
-[Paper](#citation) · [Results](results.md) · [Architecture](model.md) · [Figures](figures/) · [Run it on your own imagery ↓](#inference-run-it-on-your-own-imagery)
+[Paper]((https://urldefense.com/v3/__https://kwnsfk27.r.eu-west-1.awstrack.me/L0/https:*2F*2Fauthors.elsevier.com*2Fa*2F1o0FL3I9x1yQk5/1/010201a17e975605-e8a9b62e-6880-47b0-b01a-08df1d398a5e-000000/ciJvCHTxw8uSnRojc6XdfRq9IGA=473__;JSUlJQ!!Mak6IKo!NBxFKFW9i5MbHk65KaKg28DD2DblbgIzyaiz_3pHk2BptTjEt8v4AkA_IH79M3FUcf6u4Spfhef3Px77DImA4w$)) · [Results](results.md) · [Architecture](model.md) · [Figures](figures/) · [Run it on your own imagery ↓](#inference-run-it-on-your-own-imagery)
 
 ---
 
