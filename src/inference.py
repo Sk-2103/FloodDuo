@@ -42,10 +42,6 @@ def to_reflectance(image: np.ndarray, scale: float = None, verbose: bool = True)
     used by Planet's Surface Reflectance product and Sentinel-2 L2A. Values
     already in a plausible reflectance range are left untouched.
 
-    This is a heuristic for the common case, not a universal radiometric
-    calibration -- if your data uses a different scale factor or is raw
-    at-sensor radiance/DN needing per-band coefficients, pass `scale`
-    explicitly (or convert before calling this).
     """
     raw_dtype, raw_max = image.dtype, float(image.max())
     image = image.astype(np.float32)
