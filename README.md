@@ -51,6 +51,8 @@ Surface Reflectance product or Sentinel-2 L2A, both uint16 x10000) to
 reflectance automatically — see `src/inference.to_reflectance` and the
 notebook's Section 4 if your imagery uses a different scale factor.
 
+**Input must be 4-band, in B, G, R, NIR order (not R, G, B, NIR)**
+
 The released checkpoint is self-contained (frozen DINOv3-L + Clay v1.5
 backbones and FloodDuo's trained weights all in one file) and is the
 **release model** — trained on all FloodPlanet + UFO data pooled, not one of
